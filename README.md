@@ -14,7 +14,12 @@
 计算曲率的相关文件参考了![Itzik Ben Shabat的程序](http://cn.mathworks.com/matlabcentral/fileexchange/47134-curvature-estimationl-on-triangle-mesh)
 ## Tests 项目运行效果
 颅内血管瘤整体生长状态：
+
 ![](https://github.com/frayds/Patient-specific-modelling-of-intracranial-aneurysm-evolution/raw/master/demo_pictures/Global(%E6%95%B4%E4%BD%93%E7%94%9F%E9%95%BF).gif)
+
+颅内血管瘤区域生长状态：
+
+![](https://github.com/frayds/Patient-specific-modelling-of-intracranial-aneurysm-evolution/raw/master/demo_pictures/localization(%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF).gif)
 
 ## Contributors 参与者介绍
 濮一帆:advanced Computer Science, Department of Computer Science, University of Sheffield
