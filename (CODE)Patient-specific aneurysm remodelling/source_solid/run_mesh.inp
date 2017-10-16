@@ -1,0 +1,108 @@
+/BATCH  
+/COM,ANSYS RELEASE 15.0.7  UP20140420       18:33:53    07/28/2017
+/input,menust,tmp,''
+/GRA,POWER
+/GST,ON
+/PLO,INFO,3
+/GRO,CURL,ON
+/CPLANE,1   
+/REPLOT,RESIZE  
+WPSTYLE,,,,,,,,0
+/CWD,'.\'
+/AUX15  
+!*  
+IOPTN,IGES,SMOOTH   
+IOPTN,MERGE,YES 
+IOPTN,SOLID,YES 
+IOPTN,SMALL,YES 
+IOPTN,GTOLER, DEFA  
+IGESIN,'aneurysm_thickness','igs',' '   
+VPLOT   
+!*  
+FINISH  
+/PREP7  
+!*  
+ET,1,SOLID187   
+!*  
+!*   
+ESIZE,0.3,0,
+MSHAPE,1,3D 
+MSHKEY,0
+!*  
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+!*  
+VMESH,_Y1   
+!*  
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+!*  
+
+CDWRITE,DB,'solid_mesh','cdb'
+
+!!!!!!!!!!!!!output nodes and elements information!!!!!!!!!!
+ALLSEL
+*GET,Nnod,NODE,0,COUNT
+*DIM,S_Xyz,ARRAY,Nnod,4
+*GET,Nd,NODE,0,NUM,MIN
+*get,n_max,NODE,0,NUM,Max
+*DO,I,1,Nnod,1
+S_Xyz(I,1)=Nd
+S_Xyz(I,2)=NX(Nd)
+S_Xyz(I,3)=NY(Nd)
+S_Xyz(I,4)=NZ(Nd)
+Nd=NDNEXT(Nd)
+*ENDDO
+*cfopen,nodes_list,txt
+*vwrite, S_Xyz(1,1), S_Xyz(1,2), S_Xyz(1,3), S_Xyz(1,4)
+(F10.0,F12.8,F12.8,F12.8)
+*cfclos
+  
+/output,elements_list,txt,  
+elist   
+/output 
+!!!!!!!!!!!!!finish output!!!!!!!!!!
+
+
+!!!!!!!!!!!!!output nodes number of inner surface!!!!!!!!!!
+ASEL,S,,,879,956,, 
+NSLA,S,1
+/output,nlist_innersurface,txt,,append
+nlist
+/output
+/GO
+!*
+ASEL,S,,,973,1140,, 
+NSLA,S,1
+/output,nlist_innersurface,txt,,append
+nlist
+/output
+!!!!!!!!!!!!!finish output!!!!!!!!!!
+
+!!!!!!!!!!!!!output centriod!!!!!!!!!!
+*GET,Nele,ELEM,0,COUNT   !get the number of the ELEMENT(Nele)
+
+*dim,ele_cent,array,Nele,4     ! establish a array
+
+*GET,Ed,ELEM,0,NUM,MIN 
+*DO,I,1,Nele,1                           
+ele_cent(I,1)=Ed
+*GET,ele_cent(I,2),ELEM,Ed,CENT,X                 ! get the information of deformation in X direction on each node
+*GET,ele_cent(I,3),ELEM,Ed,CENT,Y
+*GET,ele_cent(I,4),ELEM,Ed,CENT,Z
+Ed=ELNEXT(Ed)                                 ! read the next node number, because sometimes the node number is not continous
+*ENDDO
+
+*cfopen,element_centroid,dat                ! build a file to store the data
+*vwrite, ele_cent(1,1), ele_cent(1,2), ele_cent(1,3), ele_cent(1,4)    ! strat with 1, fortran can write the following data in the array automatically
+(F10.0,F12.8,F12.8,F12.8)  ! set the number format
+*cfclos     
+!!!!!!!!!!!!!output centriod!!!!!!!!!!
+
+
+SAVE,'solid_mesh','db'
+
