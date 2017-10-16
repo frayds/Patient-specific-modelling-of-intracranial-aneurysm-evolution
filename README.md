@@ -4,6 +4,8 @@
 此项目是关于颅内血管瘤的建模以及对其生长状态的模拟，使用Matlab, APDL, FORTRAN and Perl四种编程语言以及Anasys和Tecplot 360这两个专业软件. 
 
 此项目主要是通过分析血管瘤表面曲率，获得其表面特征情况，然后通过Holzapfel的成长模型构建其生长模型(具体模型的数学表达可以查阅论文第26页)。对于其模拟生长的过程，针对每一个有限元需要改变的是其中的剪切模量值(c)以及k2值。
+
+其他简要的介绍可以通过![介绍海报](https://github.com/frayds/Patient-specific-modelling-of-intracranial-aneurysm-evolution/blob/master/poster(%E6%BC%94%E7%A4%BA%E6%B5%B7%E6%8A%A5).pdf)进行了解。
 ## Motivation 创作动机
 此项目是于University of Sheffield(谢菲尔德大学)攻读Master(硕士)的毕业项目。
 ## Installation 如何安装
@@ -11,7 +13,8 @@
 ## API Reference
 计算曲率的相关文件参考了![Itzik Ben Shabat的程序](http://cn.mathworks.com/matlabcentral/fileexchange/47134-curvature-estimationl-on-triangle-mesh)
 ## Tests 项目运行效果
-初始迷宫状态：
+颅内血管瘤整体生长状态：
+![](https://github.com/frayds/Patient-specific-modelling-of-intracranial-aneurysm-evolution/raw/master/demo_pictures/Global(%E6%95%B4%E4%BD%93%E7%94%9F%E9%95%BF).gif)
 
 ## Contributors 参与者介绍
 濮一帆:advanced Computer Science, Department of Computer Science, University of Sheffield
